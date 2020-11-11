@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce8a0e70_e0ca53f8",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2020-11-11T14:38:03Z",
+      "side": 1,
+      "message": "this should be:\nemail: \u0027subh.singh@samsung.com\u0027\ncompany: \u0027Samsung\u0027",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 20
+      },
+      "revId": "b0b25dcb2134a532a90f0b1394cecbdb10c24dfe",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
