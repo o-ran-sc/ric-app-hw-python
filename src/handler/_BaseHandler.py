@@ -16,13 +16,26 @@
 #
 # ==================================================================================
 
-from .hwxapp import HWXapp
+from ricxappframe.xapp_frame import RMRXapp
+from abc import ABC, abstractmethod
 
 
-def launchXapp():
-    hwxapp = HWXapp()
-    hwxapp.start()
+class _BaseHandler(ABC):
+    """
+    Represents base Abstract Handler class
+    Here initialize variables which will be common to all xapp
 
+    Parameters:
+        rmr_xapp: Reference to original RMRxappframe object
+        msgtype: Integer specifying messagetype
+    """
 
-if __name__ == "__main__":
-    launchXapp()
+    def __init__(self, rmr_xapp: RMRXapp, msgtype):
+        self._rmr_xapp = rmr_xapp
+        self.logger = self._rmr_xapp.logger
+        self.msgtype = msgtype
+        self._rmr_xapp.register_callback(self.request_handler, msgtype)
+
+    @abstractmethod
+    def request_handler(self, rmr_xapp, summary, sbuf):
+        pass
