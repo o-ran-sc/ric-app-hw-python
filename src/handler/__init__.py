@@ -16,17 +16,5 @@
 #
 # ==================================================================================
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: hwxapp
-  labels:
-    role: xapp
-spec:
-  containers:
-    - name: hwxapp-py
-      image: hwxapp-py:1.0
-      ports:
-        - name: rmr
-          containerPort: 4560
-          protocol: TCP
+from .a1PolicyHandler import A1PolicyHandler
+from .healthCheckHandler import HealthCheckHandler

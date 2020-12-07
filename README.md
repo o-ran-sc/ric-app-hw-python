@@ -42,7 +42,7 @@ This covers all three methods.
 3. Kubernetes 
 
 
-
+:
 Software Installation and Deployment
 ------------------------------------
 The build process assumes a Linux environment with python >= 3.8  and  has been tested on Ubuntu. For building docker images,

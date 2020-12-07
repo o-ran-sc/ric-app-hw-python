@@ -16,17 +16,17 @@
 #
 # ==================================================================================
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: hwxapp
-  labels:
-    role: xapp
-spec:
-  containers:
-    - name: hwxapp-py
-      image: hwxapp-py:1.0
-      ports:
-        - name: rmr
-          containerPort: 4560
-          protocol: TCP
+from ricxappframe.xapp_frame import RMRXapp
+from abc import ABC
+
+class baseManager(ABC):
+    '''
+    Represents base Manager class
+    Here initialize variables which will be common to all xapp
+
+    Parameters:
+        rmr_xapp: Reference to original RMRxappframe object
+    '''
+    def __init__(self, rmr_xapp: RMRXapp):
+        self._rmr_xapp = rmr_xapp
+        self.logger = self._rmr_xapp.logger

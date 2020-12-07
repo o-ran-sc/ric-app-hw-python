@@ -16,13 +16,22 @@
 # ==================================================================================
 
 from setuptools import setup, find_packages
+import os
 
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 setup(
     name='hw_python',
     version='0.0.1',
     packages=find_packages(),
     url='https://gerrit.o-ran-sc.org/r/admin/repos/ric-app/hw-python',
     license='Apache 2.0',
+    description=("Hello World Python XAPP for O-RAN RIC Platform"),
+    long_description=read('README.md'),
+    author='Rahul Banerji',
+    author_email='r.banerji@samsung.com',
+    python_requires='>=3.8',
     install_requires=["ricxappframe>=1.1.1,<2.0.0"],
     entry_points={"console_scripts": ["run-hw-python.py=src.main:start"]},  # adds a magical entrypoint for Docker
     data_files=[("", ["LICENSE.txt"])],
