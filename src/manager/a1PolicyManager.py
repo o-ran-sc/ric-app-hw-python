@@ -16,17 +16,19 @@
 #
 # ==================================================================================
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: hwxapp
-  labels:
-    role: xapp
-spec:
-  containers:
-    - name: hwxapp-py
-      image: hwxapp-py:1.0
-      ports:
-        - name: rmr
-          containerPort: 4560
-          protocol: TCP
+import json
+from ricxappframe.xapp_frame import RMRXapp, rmr
+from ..utils.constants import constants
+from .baseManager import baseManager
+
+
+class A1PolicyManager(baseManager):
+
+    def __init__(self, rmr_xapp: RMRXapp):
+        super().__init__(rmr_xapp)
+
+    def startup(self):
+        policy_query = '{"policy_type_id":"' + str(constants.HELLOWORLD_POLICY_ID) + '"}'
+        self._rmr_xapp.rmr_send(policy_query.encode(), constants.A1_POLICY_QUERY)
+        self.logger.info("A1PolicyManager.startup:: Sent A1 policy query = " + policy_query)
+
