@@ -16,13 +16,11 @@
 #
 # ==================================================================================
 
-from .hwxapp import HWXapp
-
-
-def launchXapp():
-    hwxapp = HWXapp()
-    hwxapp.start()
-
-
-if __name__ == "__main__":
-    launchXapp()
+class Constants:
+    A1_POLICY_QUERY = 20012
+    HELLOWORLD_POLICY_ID = 2
+    RIC_HEALTH_CHECK_REQ = 100
+    RIC_HEALTH_CHECK_RESP = 101
+    A1_POLICY_REQ = 20010
+    A1_POLICY_RESP = 20011
+    RIC_ALARM_UPDATE = 110

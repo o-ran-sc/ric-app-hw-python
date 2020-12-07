@@ -16,13 +16,18 @@
 #
 # ==================================================================================
 
-from .hwxapp import HWXapp
+from ricxappframe.xapp_frame import RMRXapp
+from abc import ABC
 
 
-def launchXapp():
-    hwxapp = HWXapp()
-    hwxapp.start()
+class _BaseManager(ABC):
+    """
+    Represents base Manager Abstract class
+    Here initialize variables which will be common to all xapp
 
-
-if __name__ == "__main__":
-    launchXapp()
+    Parameters:
+        rmr_xapp: Reference to original RMRxappframe object
+    """
+    def __init__(self, rmr_xapp: RMRXapp):
+        self._rmr_xapp = rmr_xapp
+        self.logger = self._rmr_xapp.logger

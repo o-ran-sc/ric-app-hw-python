@@ -16,13 +16,6 @@
 #
 # ==================================================================================
 
-from .hwxapp import HWXapp
-
-
-def launchXapp():
-    hwxapp = HWXapp()
-    hwxapp.start()
-
-
-if __name__ == "__main__":
-    launchXapp()
+from .A1PolicyManager import A1PolicyManager
+from .SdlAlarmManager import SdlAlarmManager
+from .SdlManager import SdlManager
