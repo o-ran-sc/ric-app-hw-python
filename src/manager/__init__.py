@@ -16,17 +16,6 @@
 #
 # ==================================================================================
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: hwxapp
-  labels:
-    role: xapp
-spec:
-  containers:
-    - name: hwxapp-py
-      image: hwxapp-py:1.0
-      ports:
-        - name: rmr
-          containerPort: 4560
-          protocol: TCP
+from .a1PolicyManager import A1PolicyManager
+from .sdlAlarmManager import sdlAlarmManager
+from .sdlManager import sdlManager

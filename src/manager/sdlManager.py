@@ -16,17 +16,25 @@
 #
 # ==================================================================================
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: hwxapp
-  labels:
-    role: xapp
-spec:
-  containers:
-    - name: hwxapp-py
-      image: hwxapp-py:1.0
-      ports:
-        - name: rmr
-          containerPort: 4560
-          protocol: TCP
+from ricxappframe.xapp_frame import RMRXapp
+import json
+from .baseManager import baseManager
+
+class sdlManager(baseManager):
+
+    __namespace = "e2Manager"
+
+    def __init__(self, rmr_xapp: RMRXapp):
+        super.__init__(rmr_xapp)
+
+    def sdlGetGnbList(self):
+        gnbList = self._rmr_xapp.sdl_find_and_get(ns=self.__namespace, prefix="GNB")
+        self.logger.info("sdlManager.sdlGetGnbList:: Processed request: {}".format(json.dumps(gnbList)))
+
+    def sdlGetEnbList(self):
+        enbList = self._rmr_xapp.sdl_find_and_get(ns=self.__namespace, prefix="ENB")
+        self.logger.info("sdlManager.sdlGetGnbList:: Handler processed request: {}".format(json.dumps(enbList)))
+
+
+
+
