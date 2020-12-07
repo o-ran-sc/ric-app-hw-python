@@ -16,13 +16,5 @@
 #
 # ==================================================================================
 
-from .hwxapp import HWXapp
-
-
-def launchXapp():
-    hwxapp = HWXapp()
-    hwxapp.start()
-
-
-if __name__ == "__main__":
-    launchXapp()
+from .A1PolicyHandler import A1PolicyHandler
+from .HealthCheckHandler import HealthCheckHandler

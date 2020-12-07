@@ -16,13 +16,19 @@
 #
 # ==================================================================================
 
-from .hwxapp import HWXapp
+from abc import ABC
+from ..hwxapp import HWXapp
 
 
-def launchXapp():
-    hwxapp = HWXapp()
-    hwxapp.start()
+class _BaseManager(ABC):
+    """
+    Represents base Manager Abstract class
+    Here initialize variables which will be common to all xapp
 
-
-if __name__ == "__main__":
-    launchXapp()
+    Parameters:
+        hwxapp: Reference to original HWXapp object
+    """
+    def __init__(self, hwxapp: HWXapp):
+        self.config = hwxapp.config
+        self._rmr_xapp = hwxapp.rmr_xapp
+        self.logger = hwxapp.logger
