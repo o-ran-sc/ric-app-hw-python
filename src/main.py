@@ -15,11 +15,10 @@
 #   limitations under the License.
 # ==================================================================================
 
-import json
 from os import getenv
-from ricxappframe.xapp_frame import RMRXapp, rmr
-from ricxappframe.alarm import alarm
-
+from ricxappframe.xapp_frame import RMRXapp
+from .utils.constants import constants
+from .manager import *
 
 # pylint: disable=invalid-name
 rmr_xapp = None
@@ -30,12 +29,19 @@ def post_init(self):
     Function that runs when xapp initialization is complete
     """
     self.logger.info("post_init called")
+    self.sdl_alarm_mgr = sdlAlarmManager()
+    sdl_mgr = sdlManager(self)
+    sdl_mgr.sdlGetGnbList()
+    self.a1_mgr = A1PolicyManager(self)
+    self.a1_mgr.startup()
+
 
 def handle_config_change(self, config):
     """
     Function that runs at start and on every configuration file change.
     """
     self.logger.info("handle_config_change: config: {}".format(config))
+    self.config = config  # Doubt Mutex required??
 
 
 def default_handler(self, summary, sbuf):
@@ -46,6 +52,18 @@ def default_handler(self, summary, sbuf):
     self.rmr_free(sbuf)
 
 
+def a1_handler(self, summary, sbuf):
+    self.a1_mgr.resp_handler(summary, sbuf)
+
+
+def healthcheck_handler(self, _, sbuf):
+    ok = self.healthcheck()
+    self.sdl_alarm_mgr.checkSdl()
+    payload = b"OK\n" if ok else b"ERROR [RMR or SDL is unhealthy]\n"
+    self.rmr_rts(sbuf, new_payload=payload, new_mtype=constants.RIC_HEALTH_CHECK_RESP)
+    self.rmr_free(sbuf)
+
+
 def start(thread=False):
     """
     This is a convenience function that allows this xapp to run in Docker
@@ -53,13 +71,15 @@ def start(thread=False):
     (e.g., use_fake_sdl). The defaults for this function are for the Dockerized xapp.
     """
     global rmr_xapp
-    fake_sdl = getenv("USE_FAKE_SDL", True)
+    fake_sdl = getenv("USE_FAKE_SDL", False)
     config_file = getenv("CONFIG_FILE", None)
     rmr_xapp = RMRXapp(default_handler,
                        config_handler=handle_config_change,
                        rmr_port=4560,
                        post_init=post_init,
                        use_fake_sdl=bool(fake_sdl))
+    rmr_xapp.register_callback(a1_handler, constants.A1_POLICY_REQ)
+    rmr_xapp.register_callback(healthcheck_handler, constants.RIC_HEALTH_CHECK_REQ)
     rmr_xapp.run(thread)
 
 
@@ -68,7 +88,9 @@ def stop():
     can only be called if thread=True when started
     TODO: could we register a signal handler for Docker SIGTERM that calls this?
     """
+    global rmr_xapp
     rmr_xapp.stop()
+
 
 if __name__ == "__main__":
     start()
