@@ -19,7 +19,7 @@ FROM python:3.8-alpine
 COPY --from=nexus3.o-ran-sc.org:10002/o-ran-sc/bldr-alpine3-rmr:4.0.5 /usr/local/lib64/librmr* /usr/local/lib64/
 # RMR setup
 RUN mkdir -p /opt/route/
-COPY resources/test_route.rt /opt/route/test_route.rt
+COPY init/test_route.rt /opt/route/test_route.rt
 ENV LD_LIBRARY_PATH /usr/local/lib/:/usr/local/lib64
 ENV RMR_SEED_RT /opt/route/test_route.rt
 
@@ -30,8 +30,10 @@ RUN apk update && apk add gcc musl-dev bash
 COPY setup.py /tmp
 COPY LICENSE.txt /tmp/
 COPY src/ /tmp/src
+COPY init/ /tmp/init
 RUN pip install /tmp
 
 # Run
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED 1 \
+    CONFIG_FILE=/tmp/init/config-file.json
 CMD run-hw-python.py

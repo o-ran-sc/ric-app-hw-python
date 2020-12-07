@@ -19,7 +19,8 @@ import json
 from os import getenv
 from ricxappframe.xapp_frame import RMRXapp, rmr
 from ricxappframe.alarm import alarm
-
+from .constants import constants
+from .a1policy_handler import A1PolicyManager
 
 # pylint: disable=invalid-name
 rmr_xapp = None
@@ -30,12 +31,16 @@ def post_init(self):
     Function that runs when xapp initialization is complete
     """
     self.logger.info("post_init called")
+    a1mgr = A1PolicyManager(self)
+    self.register_callback(a1_handler, constants.A1_POLICY_REQ)
+    a1mgr.startup()
 
 def handle_config_change(self, config):
     """
     Function that runs at start and on every configuration file change.
     """
     self.logger.info("handle_config_change: config: {}".format(config))
+    self.config = config  # Doubt Mutex required??
 
 
 def default_handler(self, summary, sbuf):
@@ -46,6 +51,9 @@ def default_handler(self, summary, sbuf):
     self.rmr_free(sbuf)
 
 
+def a1_handler(self, summary, sbuf):
+    a1mgr.resp_handler(summary, sbuf)
+
 def start(thread=False):
     """
     This is a convenience function that allows this xapp to run in Docker
@@ -53,6 +61,7 @@ def start(thread=False):
     (e.g., use_fake_sdl). The defaults for this function are for the Dockerized xapp.
     """
     global rmr_xapp
+    global a1mgr
     fake_sdl = getenv("USE_FAKE_SDL", True)
     config_file = getenv("CONFIG_FILE", None)
     rmr_xapp = RMRXapp(default_handler,
@@ -60,6 +69,9 @@ def start(thread=False):
                        rmr_port=4560,
                        post_init=post_init,
                        use_fake_sdl=bool(fake_sdl))
+    # a1mgr = A1PolicyManager(rmr_xapp)
+    # rmr_xapp.register_callback(a1_handler, constants.A1_POLICY_REQ)
+    # a1mgr.startup()
     rmr_xapp.run(thread)
 
 
@@ -69,6 +81,7 @@ def stop():
     TODO: could we register a signal handler for Docker SIGTERM that calls this?
     """
     rmr_xapp.stop()
+
 
 if __name__ == "__main__":
     start()
