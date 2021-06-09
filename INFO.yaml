@@ -34,20 +34,23 @@ repositories:
     - ric-app/hw-python
 committers:
     - <<: *oran_ric_app_hw_python_ptl
-    - name: 'Rahul Banerji'
-      email: 'r.banerji@samsung.com'
-      company: 'Samsung'
-      id: 'rayban'
-      timezone: 'America/New_York'
     - name: 'Subhash Kumar Singh'
       email: 'subh.singh@samsung.com'
       company: 'Samsung'
       id: 'subhash_singh'
-      timezone: 'America/New_York'
+      timezone: 'Asia/Kolkata'
+    - name: 'Naman Gupta'
+      email: 'naman.gupta@samsung.com'
+      company: 'Samsung'
+      id: 'naman.gupta'
+      timezone: 'Asia/Kolkata'
 tsc:
     # yamllint disable rule:line-length
     approval: 'https://wiki.o-ran-sc.org/display/TOC#ORANSCTechnicalOversightCommittee(TOC)-20200304'
     changes:
-        - type: ''
-          name: ''
-          link: ''
+        - type: 'Deletion'
+          name: 'Rahul Banerji'
+          link: 'https://lists.o-ran-sc.org/g/toc/message/438'
+        - type: 'Addition'
+          name: 'Naman Gupta'
+          link: 'https://lists.o-ran-sc.org/g/toc/message/438'
