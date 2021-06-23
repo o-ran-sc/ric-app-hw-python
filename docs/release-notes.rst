@@ -21,7 +21,7 @@ Version history
 | **Date**           | **Ver.**           | **Author**         | **Comment**        |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-| -                  | -                  |   Rahul Banerji    | -                  |
+|     2021-06-23     |      1.0.0         |   Naman Gupta      | Dawn Release       |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
 
@@ -30,21 +30,15 @@ Version history
 Summary
 -------
 
-This release of the Python HW xAPP demonstrates the following:
+The Dawn release of the go HW xAPP demonstrates the following:
 
--E2, A1 interfaces interactions.
+- A1 interfaces interactions.
 
--Read-write operations into a persistent storage.
+- -xAPP Health Check
 
--xAPP Configuration management
+- SDL Handler
 
--RMR Health Check
-
--xAPP Health Check
-
--Raising alarms
-
--Generating metrics
+- Alarm Management
 
 
 Release Data
