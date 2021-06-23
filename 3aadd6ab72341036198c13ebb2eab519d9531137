@@ -18,6 +18,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "322fc7d9_1aa58bd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2021-06-23T18:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f51ac24c_e2cabb2e",
+      "revId": "3aadd6ab72341036198c13ebb2eab519d9531137",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdedd238_5b7a3915",
@@ -41,6 +59,30 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbff17bf_f6fb84c3",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2021-06-23T18:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdedd238_5b7a3915",
+      "range": {
+        "startLine": 24,
+        "startChar": 46,
+        "endLine": 24,
+        "endChar": 61
+      },
+      "revId": "3aadd6ab72341036198c13ebb2eab519d9531137",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cf82a96_132663e5",
@@ -54,6 +96,30 @@
       "writtenOn": "2021-06-23T10:38:29Z",
       "side": 1,
       "message": "please check the features available in hw-python and accordingly udpate.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 18
+      },
+      "revId": "3aadd6ab72341036198c13ebb2eab519d9531137",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ce0fc0_9ac35c89",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2021-06-23T18:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cf82a96_132663e5",
       "range": {
         "startLine": 33,
         "startChar": 0,
