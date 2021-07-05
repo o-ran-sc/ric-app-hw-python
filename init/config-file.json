@@ -1,48 +1,78 @@
- {
-        "xapp_name": "hwxapp",
-        "version": "1.0.0",
-        "containers": [
-            {
-                "name": "hwxapp",
-                "image": {
-                    "registry": "nexus3.o-ran-sc.org:10002",
-                    "name": "o-ran-sc/ric-app-hw",
-                    "tag": "1.0.6"
-               	}
+{
+    "name": "hw-python",
+    "version": "1.0.0",
+    "containers": [
+        {
+            "name": "hw-python",
+            "image": {
+                "registry": "nexus3.o-ran-sc.org:10004",
+                "name": "o-ran-sc/ric-app-hw-python",
+                "tag": "1.0.0"
             }
-        ],
-        "messaging": {
-            "ports": [
-                {
-                    "name": "rmr-data",
-                    "container": "hwxapp",
-                    "port": 4560,
-                    "rxMessages": [
-						"A1_POLICY_REQ", "RIC_HEALTH_CHECK_REQ" 
-                    ],
-                    "txMessages": [ "A1_POLICY_RESP", "A1_POLICY_QUERY", "RIC_HEALTH_CHECK_RESP" ],
-                    "policies": [1],
-                    "description": "rmr receive data port for HWxapp"
-                },
-                {
-                    "name": "rmr-route",
-                    "container": "hwxapp",
-                    "port": 4561,
-                    "description": "rmr route port for hwxapp"
-                }
-            ]
-        },
-        "rmr": {
-            "protPort": "tcp:4560",
-            "maxSize": 2072,
-            "numWorkers": 1,
-            "txMessages": [
-                "RIC_SUB_REQ", "A1_POLICY_RESP", "A1_POLICY_QUERY", "RIC_HEALTH_CHECK_RESP"
-            ],
-            "rxMessages": [
-                "RIC_SUB_RESP", 
-				"A1_POLICY_REQ", "RIC_HEALTH_CHECK_REQ"              
-            ],
-	    "policies": [1]
         }
-  }
+    ],
+    "livenessProbe": {
+        "httpGet": {
+            "path": "ric/v1/health/alive",
+            "port": 8080
+        },
+        "initialDelaySeconds": 5,
+        "periodSeconds": 15
+    },
+    "readinessProbe": {
+        "httpGet": {
+            "path": "ric/v1/health/ready",
+            "port": 8080
+        },
+        "initialDelaySeconds": 5,
+        "periodSeconds": 15
+    },
+    "messaging": {
+        "ports": [
+            {
+                "name": "http",
+                "container": "hw-python",
+                "port": 8080,
+                "description": "http service"
+            },
+            {
+                "name": "rmrroute",
+                "container": "hw-python",
+                "port": 4561,
+                "description": "rmr route port for hw-python xapp"
+            },
+            {
+                "name": "rmrdata",
+                "container": "hw-python",
+                "port": 4560,
+                "rxMessages": ["RIC_SUB_RESP", "RIC_SUB_FAILURE", "RIC_SUB_DEL_RESP", "RIC_INDICATION"],
+                "txMessages": ["RIC_SUB_REQ", "RIC_SUB_DEL_REQ", "RIC_SGNB_ADDITION_REQ", "RIC_SGNB_ADDITION_ACK"],
+                "mtypes" : [
+                        {"name":"TESTNAME1","id":55555},
+                        {"name":"TESTNAME2","id":55556}
+                ],
+                "policies": [1],
+                "description": "rmr data port for hw-python"
+            }
+        ]
+    },
+    "rmr": {
+        "protPort": "tcp:4560",
+        "maxSize": 2072,
+        "numWorkers": 1,
+        "txMessages": [
+            "RIC_SUB_REQ", "A1_POLICY_RESP", "A1_POLICY_QUERY", "RIC_HEALTH_CHECK_RESP"
+        ],
+        "rxMessages": [
+            "RIC_SUB_RESP",
+            "A1_POLICY_REQ", "RIC_HEALTH_CHECK_REQ"
+        ],
+    "policies": [1]
+    },
+    "controls": {
+            "fileStrorage": false
+    },
+    "db" : {
+            "waitForSdl": false
+    }
+}
