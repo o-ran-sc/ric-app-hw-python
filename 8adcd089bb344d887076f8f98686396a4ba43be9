@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2b934e_dc7ebb3d",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2021-07-08T06:34:55Z",
+      "side": 1,
+      "message": "I think we should not provide docker build logs.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 42
+      },
+      "revId": "8adcd089bb344d887076f8f98686396a4ba43be9",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5d9f606_038999f6",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2021-07-08T06:34:55Z",
+      "side": 1,
+      "message": "highlight important file and folder.",
+      "range": {
+        "startLine": 222,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 0
+      },
+      "revId": "8adcd089bb344d887076f8f98686396a4ba43be9",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
