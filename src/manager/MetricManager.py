@@ -16,17 +16,25 @@
 #
 # ==================================================================================
 
-class Constants:
-    A1_POLICY_QUERY = 20012
-    HELLOWORLD_POLICY_ID = 2
-    RIC_HEALTH_CHECK_REQ = 100
-    RIC_HEALTH_CHECK_RESP = 101
-    A1_POLICY_REQ = 20010
-    A1_POLICY_RESP = 20011
-    RIC_ALARM_UPDATE = 110
-    ACTION_TYPE = "REPORT"
-    SUBSCRIPTION_PATH = "http://service-{}-{}-http:{}"
-    PLT_NAMESPACE = "ricplt"
-    SUBSCRIPTION_SERVICE = "submgr"
-    SUBSCRIPTION_PORT = "3800"
-    SUBSCRIPTION_REQ = 12011
+from ricxappframe.xapp_frame import RMRXapp
+from ricxappframe.metric import metric
+from ._BaseManager import _BaseManager
+from datetime import datetime
+
+# noinspection PyProtectedMember,PyProtectedMember
+class MetricManager(_BaseManager):
+
+    def __init__(self, rmr_xapp: RMRXapp):
+        super().__init__(rmr_xapp)
+        self.metric_mgr = metric.MetricsManager(self._rmr_xapp._mrc, "system-time", "hw-python")
+
+    def send_metric(self):
+
+        # datetime object containing current date and time
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        metric_list = [dt_string]
+        self.logger.info("MetricManager:: metric time {}".format(metric_list))
+        self.metric_mgr.send_metrics(metric_list)
+        self.logger.info("MetricManager:: metric sent")
+
