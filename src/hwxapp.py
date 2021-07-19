@@ -18,8 +18,13 @@
 
 from os import getenv
 from ricxappframe.xapp_frame import RMRXapp, rmr
+
+from .handler.SubscriptionHandler import SubscriptionHandler
+from .manager.MetricManager import MetricManager
+from .manager.SubscriptionManager import SubscriptionManager
 from .utils.constants import Constants
 from .manager import *
+
 from .handler import *
 from mdclogpy import Logger
 
@@ -44,6 +49,15 @@ class HWXapp:
         sdl_mgr.sdlGetGnbList()
         a1_mgr = A1PolicyManager(rmr_xapp)
         a1_mgr.startup()
+        sub_mgr = SubscriptionManager(rmr_xapp)
+        enb_list = sub_mgr.get_enb_list()
+        for enb in enb_list:
+            sub_mgr.send_subscription_request(enb)
+        gnb_list = sub_mgr.get_gnb_list()
+        for gnb in gnb_list:
+            sub_mgr.send_subscription_request(gnb)
+        metric_mgr = MetricManager(rmr_xapp)
+        metric_mgr.send_metric()
 
     def _handle_config_change(self, rmr_xapp, config):
         """
@@ -66,6 +80,7 @@ class HWXapp:
         """
         HealthCheckHandler(self._rmr_xapp, Constants.RIC_HEALTH_CHECK_REQ)
         A1PolicyHandler(self._rmr_xapp, Constants.A1_POLICY_REQ)
+        SubscriptionHandler(self._rmr_xapp,Constants.SUBSCRIPTION_REQ)
 
     def start(self, thread=False):
         """
