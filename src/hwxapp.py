@@ -19,9 +19,7 @@
 from os import getenv
 from ricxappframe.xapp_frame import RMRXapp, rmr
 
-from .handler.SubscriptionHandler import SubscriptionHandler
-from .manager.MetricManager import MetricManager
-from .manager.SubscriptionManager import SubscriptionManager
+
 from .utils.constants import Constants
 from .manager import *
 

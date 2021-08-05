@@ -19,3 +19,6 @@
 from .A1PolicyManager import A1PolicyManager
 from .SdlAlarmManager import SdlAlarmManager
 from .SdlManager import SdlManager
+from .SubscriptionManager import SubscriptionManager
+from .MetricManager import MetricManager
+
