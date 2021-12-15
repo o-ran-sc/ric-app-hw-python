@@ -31,8 +31,8 @@ setup(
     license='Apache 2.0',
     description="Hello World Python XAPP for O-RAN RIC Platform",
     long_description=read('README.md'),
-    author='Rahul Banerji',
-    author_email='r.banerji@samsung.com',
+    author='Naman Gupta',
+    author_email='naman.gupta@samsung.com',
     python_requires='>=3.8',
     install_requires=["ricxappframe>=1.1.1,<2.3.0"],
     entry_points={"console_scripts": ["run-hw-python.py=src.main:launchXapp"]},  # adds a magical entrypoint for Docker
