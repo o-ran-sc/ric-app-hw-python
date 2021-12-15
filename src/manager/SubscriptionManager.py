@@ -24,7 +24,6 @@ from ricxappframe.xapp_frame import RMRXapp
 import json
 from ..utils.constants import Constants
 from ._BaseManager import _BaseManager
-from swagger_client import api_client
 
 class SubscriptionManager(_BaseManager):
 
@@ -32,7 +31,6 @@ class SubscriptionManager(_BaseManager):
 
     def __init__(self, rmr_xapp: RMRXapp):
         super().__init__(rmr_xapp)
-        _client = api_client()
 
     def get_gnb_list(self):
         gnblist = self._rmr_xapp.get_list_gnb_ids()   # yet to come in library
