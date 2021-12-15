@@ -1,0 +1,7 @@
+Verified+1: ORAN Jobbuilder <releng+oran-jobbuilder@linuxfoundation.org>
+Code-Review+2: Naman Gupta <naman.gupta@samsung.com>
+Submitted-by: Naman Gupta <naman.gupta@samsung.com>
+Submitted-at: Wed, 15 Dec 2021 11:41:00 +0000
+Reviewed-on: https://gerrit.o-ran-sc.org/r/c/ric-app/hw-python/+/7378
+Project: ric-app/hw-python
+Branch: refs/heads/master
