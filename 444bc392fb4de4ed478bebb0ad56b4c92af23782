@@ -16,6 +16,23 @@
       "message": "Kindly Review and Merge",
       "revId": "444bc392fb4de4ed478bebb0ad56b4c92af23782",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fee59a07_c6025735",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000050
+      },
+      "writtenOn": "2022-01-25T14:45:34Z",
+      "side": 1,
+      "message": "Why were they removed? Are they not working/causing problems?",
+      "revId": "444bc392fb4de4ed478bebb0ad56b4c92af23782",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
