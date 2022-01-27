@@ -33,6 +33,24 @@
       "message": "Why were they removed? Are they not working/causing problems?",
       "revId": "444bc392fb4de4ed478bebb0ad56b4c92af23782",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd0752a_98ac91e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001361
+      },
+      "writtenOn": "2022-01-27T06:36:40Z",
+      "side": 1,
+      "message": "since the healthcheck endpoint is not implemented in ricxappframe-py ,the liveness probe was failing and hence the hw-python was going into crashloopback.",
+      "parentUuid": "fee59a07_c6025735",
+      "revId": "444bc392fb4de4ed478bebb0ad56b4c92af23782",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
