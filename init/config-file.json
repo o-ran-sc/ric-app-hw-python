@@ -7,7 +7,7 @@
             "image": {
                 "registry": "nexus3.o-ran-sc.org:10004",
                 "name": "o-ran-sc/ric-app-hw-python",
-                "tag": "1.1.0"
+                "tag": "1.1.9"
             }
         }
     ],
@@ -16,19 +16,19 @@
             {
                 "name": "http",
                 "container": "hw-python",
-                "port": 8080,
+                "port": 2020,
                 "description": "http service"
             },
             {
                 "name": "rmrroute",
                 "container": "hw-python",
-                "port": 4561,
+                "port": 2021,
                 "description": "rmr route port for hw-python xapp"
             },
             {
                 "name": "rmrdata",
                 "container": "hw-python",
-                "port": 4560,
+                "port": 3254,
                 "rxMessages": ["RIC_SUB_RESP", "RIC_SUB_FAILURE", "RIC_SUB_DEL_RESP", "RIC_INDICATION"],
                 "txMessages": ["RIC_SUB_REQ", "RIC_SUB_DEL_REQ", "RIC_SGNB_ADDITION_REQ", "RIC_SGNB_ADDITION_ACK"],
                 "mtypes" : [
@@ -41,7 +41,7 @@
         ]
     },
     "rmr": {
-        "protPort": "tcp:4560",
+        "protPort": "tcp:3254",
         "maxSize": 2072,
         "numWorkers": 1,
         "txMessages": [
