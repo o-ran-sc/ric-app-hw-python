@@ -31,12 +31,14 @@ COPY setup.py /tmp
 COPY README.md /tmp
 COPY LICENSE.txt /tmp/
 COPY src/ /tmp/src
-COPY init/ /tmp/init
 RUN pip install /tmp
 
-# Env - TODO- Configmap
 ENV PYTHONUNBUFFERED 1
-ENV CONFIG_FILE=/tmp/init/config-file.json
+
+# Set up ConfigMap
+RUN mkdir -p /opt/ric/config && chmod -R 755 /opt/ric/config
+COPY init/ /opt/ric/config
+ENV CONFIG_FILE=/opt/ric/config/config-file.json
 
 # For Default DB connection, modify for resp kubernetes env
 ENV DBAAS_SERVICE_PORT=6379
