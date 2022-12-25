@@ -45,7 +45,7 @@ This covers all three methods.
 
 
 
-##Build Process
+## Build Process
 
 The HW xAPP can be either tested as a Linux binary or as a docker image.
    1. **Linux binary**: The HW xAPP may be compiled and invoked directly.
